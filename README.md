@@ -18,12 +18,11 @@ Thermo-Guard runs as a Docker container on a Synology NAS, polling the Meraki AP
 ```mermaid
 graph LR
     subgraph "Synology NAS (Docker Container)"
-        A[Automation Program (main.py)]
-        Cfg[Configuration (config.py)]
+        A[Automation Program]
     end
 
-    subgraph "Third-Party Monitoring System (Meraki)"
-        B[Meraki API]
+    subgraph "Third-Party Monitoring System"
+        B[Alarm Status API]
     end
 
     subgraph "vCenter Server"
@@ -41,7 +40,13 @@ graph LR
     A -- iLO Interaction --> D
     A -- iLO Interaction --> E
     A -- iLO Interaction --> F
-    A -- Reads --> Cfg
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#ccf,stroke:#333,stroke-width:2px
+    style C fill:#9cf,stroke:#333,stroke-width:2px
+    style D fill:#fcc,stroke:#333,stroke-width:2px
+    style E fill:#fcc,stroke:#333,stroke-width:2px
+    style F fill:#fcc,stroke:#333,stroke-width:2px
 ```
 
 ## Prerequisites
