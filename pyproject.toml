@@ -1,7 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
+authors = [{ "name" = "BoHong Li", email = "a60814billy@gmail.com" }]
 name = "thermo-guard"
 version = "0.1.0"
-description = "Add your description here"
+description = "Automated ESXi Cluster Shutdown and Power-On based on Temperature Alarm"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+license = { text = "MIT" }
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "python-ilorest-library>=3.5.0",
+    "pyvmomi>=8.0.0",
+    "requests>=2.31.0",
+]
+
+[project.scripts]
+thermo-guard = "thermo_guard.main:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+packages = ["thermo_guard"]
