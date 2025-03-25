@@ -6,8 +6,8 @@ an ESXi cluster when a high-temperature alarm is detected, and powers it back on
 the alarm recovers.
 """
 
+from .cluster_operations import power_on_cluster, shutdown_cluster
+from .config import validate_config
+from .ilo_client import IloClient
 from .meraki_client import MerakiClient
 from .vcenter_client import VCenterClient
-from .ilo_client import IloClient
-from .config import validate_config
-from .cluster_operations import shutdown_cluster, power_on_cluster

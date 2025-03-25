@@ -1,5 +1,5 @@
 import os
-from typing import List, Dict, Any
+from typing import Dict, List
 
 # Meraki API configuration
 MERAKI_API_KEY = os.environ.get("MERAKI_API_KEY", "")
@@ -24,9 +24,11 @@ ILO_HOSTS: List[Dict[str, str]] = []
 ilo_hosts_env = os.environ.get("ILO_HOSTS", "[]")
 try:
     import json
+
     ILO_HOSTS = json.loads(ilo_hosts_env)
 except json.JSONDecodeError:
     print("Error: ILO_HOSTS environment variable is not valid JSON")
+
 
 # Validate required configuration
 def validate_config() -> bool:
@@ -49,10 +51,10 @@ def validate_config() -> bool:
     if not ILO_HOSTS:
         print("Error: ILO_HOSTS environment variable is not set or is empty")
         return False
-    
+
     for host in ILO_HOSTS:
         if not all(key in host for key in ["host", "username", "password"]):
             print(f"Error: iLO host configuration is missing required fields: {host}")
             return False
-    
+
     return True

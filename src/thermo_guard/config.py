@@ -4,9 +4,9 @@ Configuration module for Thermo-Guard.
 This module provides configuration variables and validation for the Thermo-Guard application.
 """
 
-import os
 import json
-from typing import List, Dict, Any
+import os
+from typing import Dict, List
 
 # Meraki API configuration
 MERAKI_API_KEY = os.environ.get("MERAKI_API_KEY", "")
@@ -38,7 +38,7 @@ except json.JSONDecodeError:
 def validate_config() -> bool:
     """
     Validate that all required configuration parameters are set.
-    
+
     Returns:
         True if all required configuration parameters are set, False otherwise.
     """
@@ -60,10 +60,10 @@ def validate_config() -> bool:
     if not ILO_HOSTS:
         print("Error: ILO_HOSTS environment variable is not set or is empty")
         return False
-    
+
     for host in ILO_HOSTS:
         if not all(key in host for key in ["host", "username", "password"]):
             print(f"Error: iLO host configuration is missing required fields: {host}")
             return False
-    
+
     return True
